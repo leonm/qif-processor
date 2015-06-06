@@ -23,6 +23,11 @@ func main() {
       Aliases: []string{"d"},
       Usage:   "delete a transaction",
       Action:  processDelete,
+      Flags: []cli.Flag {
+        cli.StringFlag{
+          Name: "payee, P",
+        },
+      },
     },
   }
 
