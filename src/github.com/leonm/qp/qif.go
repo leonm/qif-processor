@@ -14,9 +14,7 @@ func processQIF(input *os.File, output *os.File) {
 
     if strings.HasPrefix(line, "!") {
       output.WriteString(line+"\n")
-    }
-
-    if line == "^" {
+    } else if line == "^" {
       for _,t := range transaction {
         output.WriteString(t+"\n")
       }
