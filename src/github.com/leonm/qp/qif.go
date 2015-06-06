@@ -2,11 +2,27 @@ package main
 
 import "bufio"
 import "os"
+import "strings"
 
 func processQIF(input *os.File, output *os.File) {
+
   scanner := bufio.NewScanner(input)
+  transaction := []string{}
+
   for scanner.Scan() {
-    //println(scanner.Text())
-    output.WriteString(scanner.Text()+"\n")
+    line := scanner.Text()
+
+    if strings.HasPrefix(line, "!") {
+      output.WriteString(line+"\n")
+    }
+
+    if line == "^" {
+      for _,t := range transaction {
+        output.WriteString(t+"\n")
+      }
+      output.WriteString("^\n")
+    } else {
+      transaction = append(transaction,line)
+    }
   }
 }
