@@ -19,6 +19,7 @@ func processQIF(input *os.File, output *os.File) {
         output.WriteString(t+"\n")
       }
       output.WriteString("^\n")
+      transaction = []string{}
     } else {
       transaction = append(transaction,line)
     }
