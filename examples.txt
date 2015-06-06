@@ -1,0 +1,7 @@
+# Examples Usage
+# This is not fully implemented yet but it gives an idea of the vision
+
+qp delete -P *Coles* test.qif
+qp insert-column -P *Coles* -L Groceries test.qif
+qp update-column -P *Coles* -P Coles test.qif
+qp update-column -T 33* -L Expensive
