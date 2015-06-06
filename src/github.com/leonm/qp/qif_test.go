@@ -4,7 +4,7 @@ import "testing"
 import "os"
 
 
-func RunQIFSample(t *testing.T, name string) {
+func RunQIFSample(t *testing.T, name string, processor processTransaction) {
   in,err := os.Open(os.Getenv("GOPATH")+"/samples/"+name+".in.qif")
   check(err)
   defer in.Close()
@@ -14,20 +14,24 @@ func RunQIFSample(t *testing.T, name string) {
   defer out.Close()
   defer os.Remove("/tmp/result.qif")
 
-  processQIF(in,out, func(transaction []string) []string {return transaction} )
+  processQIF(in, out, processor)
 
   assertEqualFiles("/tmp/result.qif",os.Getenv("GOPATH")+"/samples/"+name+".out.qif",t)
 }
 
 func TestQIFHeader(t *testing.T) {
-  RunQIFSample(t, "headers")
+  RunQIFSample(t, "headers", RepeatTransaction)
 }
 
 
 func TestRepeatTransaction(t *testing.T) {
-  RunQIFSample(t, "transaction")
+  RunQIFSample(t, "transaction", RepeatTransaction)
 }
 
 func TestRepeat2Transactions(t *testing.T) {
-  RunQIFSample(t, "2transaction")
+  RunQIFSample(t, "2transaction", RepeatTransaction)
+}
+
+func TestRemoveTransactions(t *testing.T) {
+  RunQIFSample(t, "delete-transaction", DeleteTransaction)
 }
