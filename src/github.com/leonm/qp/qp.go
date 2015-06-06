@@ -4,7 +4,12 @@ import "github.com/codegangsta/cli"
 import "os"
 
 func processDelete(c *cli.Context)  {
-  processQIF(os.Stdin, os.Stdout)
+
+  processor := func (transaction []string) []string {
+    return transaction
+  }
+
+  processQIF(os.Stdin, os.Stdout, processor)
 }
 
 func main() {

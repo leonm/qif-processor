@@ -14,7 +14,7 @@ func RunQIFSample(t *testing.T, name string) {
   defer out.Close()
   defer os.Remove("/tmp/result.qif")
 
-  processQIF(in,out)
+  processQIF(in,out, func(transaction []string) []string {return transaction} )
 
   assertEqualFiles("/tmp/result.qif",os.Getenv("GOPATH")+"/samples/"+name+".out.qif",t)
 }
