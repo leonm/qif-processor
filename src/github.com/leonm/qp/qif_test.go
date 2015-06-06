@@ -20,7 +20,7 @@ func TestQIFHeader(t *testing.T) {
 }
 
 
-func TestRepeatTransactions(t *testing.T) {
+func TestRepeatTransaction(t *testing.T) {
   in,err := os.Open(os.Getenv("GOPATH")+"/samples/transaction.in.qif")
   check(err)
   defer in.Close()
@@ -28,7 +28,6 @@ func TestRepeatTransactions(t *testing.T) {
   out,err := os.Create("/tmp/result.qif")
   check(err)
   defer out.Close()
-  // defer os.Remove("/tmp/result.qif")
 
   processQIF(in,out)
 
