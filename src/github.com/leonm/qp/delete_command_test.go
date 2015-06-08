@@ -3,19 +3,6 @@ package main
 import "testing"
 import "reflect"
 
-type MockContext struct {
-  isSet bool
-  value string
-}
-
-func (c *MockContext) IsSet(string) bool {
-  return c.isSet
-}
-
-func (c *MockContext) String(string) string {
-  return c.value
-}
-
 func TestNoDeletionByDefault(t *testing.T) {
   c := &MockContext{isSet:false, value:".*"}
   transaction := []string{"PINTERNET TRANSFER"}

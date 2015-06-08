@@ -15,3 +15,16 @@ func assertEqualFiles(file1 string, file2 string, t *testing.T) {
     t.Fail()
   }
 }
+
+type MockContext struct {
+  isSet bool
+  value string
+}
+
+func (c *MockContext) IsSet(string) bool {
+  return c.isSet
+}
+
+func (c *MockContext) String(string) string {
+  return c.value
+}

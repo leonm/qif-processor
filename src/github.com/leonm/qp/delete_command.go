@@ -11,7 +11,8 @@ func NewDeleteProcessor(c CommandContext) processTransaction {
   if(c.IsSet("payee")) {
     regex,_ := regexp.Compile(c.String("payee"))
     payeeMatch = func(transaction []string) bool {
-      return regex.MatchString(getColumn(transaction,"P"))
+      _,payee := getColumn(transaction,"P")
+      return regex.MatchString(payee)
     }
   }
 

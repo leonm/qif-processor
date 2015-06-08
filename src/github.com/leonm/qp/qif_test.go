@@ -38,14 +38,33 @@ func TestRemoveTransactions(t *testing.T) {
 
 func TestGetTransactionColumn(t *testing.T) {
   transaction := []string{"PINTERNET TRANSFER"}
-  if getColumn(transaction,"P") != "PINTERNET TRANSFER" {
+  if i,c := getColumn(transaction,"P"); i != 0 || c != "PINTERNET TRANSFER" {
     t.Fail()
   }
 }
 
 func TestGetNonExistantTransactionColumn(t *testing.T) {
   transaction := []string{"PINTERNET TRANSFER"}
-  if getColumn(transaction,"C") != "" {
+  if i,c := getColumn(transaction,"C"); i != -1 || c != "" {
+    t.Fail()
+  }
+}
+
+func TestSetTransactionColumn(t *testing.T) {
+  transaction := []string{"PINTERNET TRANSFER"}
+  transaction = setColumn(transaction,"P","TEST")
+  if transaction[0] != "PTEST" {
+    t.Fail()
+  }
+}
+
+func TestSetNewTransactionColumn(t *testing.T) {
+  transaction := []string{"PINTERNET TRANSFER"}
+  transaction = setColumn(transaction,"C","TEST")
+  if transaction[0] != "PINTERNET TRANSFER" {
+    t.Fail()
+  }
+  if transaction[1] != "CTEST" {
     t.Fail()
   }
 }
