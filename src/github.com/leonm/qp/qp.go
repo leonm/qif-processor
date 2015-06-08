@@ -14,7 +14,7 @@ func getColumn(transaction []string, column string) string {
   return ""
 }
 
-func NewDeleteProcessor(c *cli.Context) processTransaction {
+func NewDeleteProcessor(c CommandContext) processTransaction {
 
   payeeMatch := func(transaction []string) bool {return false }
 
