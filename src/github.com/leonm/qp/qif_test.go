@@ -35,3 +35,17 @@ func TestRepeat2Transactions(t *testing.T) {
 func TestRemoveTransactions(t *testing.T) {
   RunQIFSample(t, "delete-transaction", DeleteTransaction)
 }
+
+func TestGetTransactionColumn(t *testing.T) {
+  transaction := []string{"PINTERNET TRANSFER"}
+  if getColumn(transaction,"P") != "PINTERNET TRANSFER" {
+    t.Fail()
+  }
+}
+
+func TestGetNonExistantTransactionColumn(t *testing.T) {
+  transaction := []string{"PINTERNET TRANSFER"}
+  if getColumn(transaction,"C") != "" {
+    t.Fail()
+  }
+}

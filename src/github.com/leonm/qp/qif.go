@@ -14,6 +14,15 @@ func DeleteTransaction (transaction []string) []string {
   return nil
 }
 
+func getColumn(transaction []string, column string) string {
+  for _,t := range transaction {
+    if strings.HasPrefix(t,column) {
+      return t
+    }
+  }
+  return ""
+}
+
 func processQIF(input *os.File, output *os.File, processor processTransaction) {
 
   scanner := bufio.NewScanner(input)
