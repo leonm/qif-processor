@@ -21,6 +21,23 @@ func main() {
         },
       },
     },
+    {
+      Name:    "set-value",
+      Aliases: []string{"s"},
+      Usage:   "sets a column value on a transaction",
+      Action:  SetValueCommand,
+      Flags: []cli.Flag {
+        cli.StringFlag{
+          Name: "payee, P",
+        },
+        cli.StringFlag{
+          Name: "set-payee, p",
+        },
+        cli.StringFlag{
+          Name: "set-category, l",
+        },
+      },
+    },
   }
 
   app.Run(os.Args)
