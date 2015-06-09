@@ -1,6 +1,6 @@
 language: go
 go:
- - release
+  install_to: $GOPATH/src
 
 script:
  - go test -v ./...
