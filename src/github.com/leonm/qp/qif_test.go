@@ -3,9 +3,16 @@ package main
 import "testing"
 import "os"
 
+func samplesDirectory() string {
+  baseDir := os.Getenv("TRAVIS_BUILD_DIR")
+  if (baseDir == "") {
+    baseDir = os.Getenv("GOPATH")
+  }
+  return baseDir+"/samples/"
+}
 
 func RunQIFSample(t *testing.T, name string, processor processTransaction) {
-  in,err := os.Open(os.Getenv("GOPATH")+"/samples/"+name+".in.qif")
+  in,err := os.Open(samplesDirectory()+name+".in.qif")
   check(err)
   defer in.Close()
 
@@ -16,7 +23,7 @@ func RunQIFSample(t *testing.T, name string, processor processTransaction) {
 
   processQIF(in, out, processor)
 
-  assertEqualFiles("/tmp/result.qif",os.Getenv("GOPATH")+"/samples/"+name+".out.qif",t)
+  assertEqualFiles("/tmp/result.qif",samplesDirectory()+name+".out.qif",t)
 }
 
 func TestQIFHeader(t *testing.T) {
