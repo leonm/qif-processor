@@ -9,6 +9,17 @@ func main() {
 
   app.Name = "QIF Processor"
 
+  app.Flags = []cli.Flag {
+    cli.StringFlag{
+      Name: "input, I",
+      Usage: "Input .qif file.  Stdin by default. -I <filename>",
+    },
+    cli.StringFlag{
+      Name: "output, O",
+      Usage: "Output .qif file.  Stdout by default. -O <filename>",
+    },
+  }
+
   app.Commands = []cli.Command{
     {
       Name:    "delete",

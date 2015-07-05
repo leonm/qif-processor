@@ -2,7 +2,6 @@ package main
 
 import "regexp"
 import "github.com/codegangsta/cli"
-import "os"
 
 func NewSetValueProcessor(c CommandContext) processTransaction {
 
@@ -31,5 +30,5 @@ func NewSetValueProcessor(c CommandContext) processTransaction {
 
 func SetValueCommand(c *cli.Context)  {
   processor := NewSetValueProcessor(c)
-  processQIF(os.Stdin, os.Stdout, processor)
+  processQIF(commandIn(c), commandOut(c), processor)
 }

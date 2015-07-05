@@ -2,7 +2,6 @@ package main
 
 import "regexp"
 import "github.com/codegangsta/cli"
-import "os"
 
 func NewDeleteProcessor(c CommandContext) processTransaction {
 
@@ -29,5 +28,5 @@ func NewDeleteProcessor(c CommandContext) processTransaction {
 
 func DeleteCommand(c *cli.Context)  {
   processor := NewDeleteProcessor(c)
-  processQIF(os.Stdin, os.Stdout, processor)
+  processQIF(commandIn(c), commandOut(c), processor)
 }
