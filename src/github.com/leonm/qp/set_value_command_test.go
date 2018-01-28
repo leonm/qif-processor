@@ -17,7 +17,7 @@ func TestSetValue(t *testing.T) {
   transaction := []string{"PINTERNET TRANSFER"}
   processor := NewSetValueProcessor(c);
   processor(transaction)
-  if !reflect.DeepEqual(processor(transaction),[]string{"PINT","CINT"}) {
+  if !reflect.DeepEqual(processor(transaction),[]string{"PINT","LINT"}) {
     t.Fail()
   }
 }

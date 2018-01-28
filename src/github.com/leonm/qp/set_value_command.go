@@ -18,7 +18,7 @@ func NewSetValueProcessor(c CommandContext) processTransaction {
   processor := func (transaction []string) []string {
     if (payeeMatch(transaction)) {
       if c.IsSet("p") { transaction = setColumn(transaction,"P",c.String("p"))}
-      if c.IsSet("l") { transaction = setColumn(transaction,"C",c.String("l"))}
+      if c.IsSet("l") { transaction = setColumn(transaction,"L",c.String("l"))}
       return transaction
     }
     return transaction
